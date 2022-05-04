@@ -97,7 +97,7 @@ void            procinit(void);
 void            scheduler(void) __attribute__((noreturn));
 void            sched(void);
 void            sleep(void*, struct spinlock*);
-void            userinit(void);
+void            userinit(void);   // see user/initcode.S
 int             wait(uint64);
 void            wakeup(void*);
 void            yield(void);

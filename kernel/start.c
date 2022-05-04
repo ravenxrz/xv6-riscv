@@ -17,6 +17,14 @@ uint64 timer_scratch[NCPU][5];
 extern void timervec();
 
 // entry.S jumps here in machine mode on stack0.
+/* The function start performs some conﬁguration that is only allowed in machine mode, and */
+/* then switches to supervisor mode. To enter supervisor mode, RISC-V provides the instruction */
+/* mret. This instruction is most often used to return from a previous call from supervisor mode to */
+/* machine mode. start isn’t returning from such a call, and instead sets things up as if there had */
+/* been one: it sets the previous privilege mode to supervisor in the register mstatus, it sets the */
+/* return address to main by writing main’s address into the register mepc, disables virtual address */
+/* translation in supervisor mode by writing 0 into the page-table register satp, and delegates all */
+/* interrupts and exceptions to supervisor mode. */
 void
 start()
 {
